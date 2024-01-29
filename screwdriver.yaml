@@ -20,8 +20,6 @@ jobs:
         steps:
             - install: npm install screwdriver-template-main
             - validate: ./node_modules/.bin/template-validate
-        environment:
-            SD_TEMPLATE_PATH: ./path/to/template.yaml
     publish:
         requires: [main]
         steps:
@@ -29,8 +27,6 @@ jobs:
             - publish: ./node_modules/.bin/template-publish
             - autotag: ./node_modules/.bin/template-tag --name adong/alan-sd-template --tag latest
             - tag: ./node_modules/.bin/template-tag --name adong/alan-sd-template --version 1.3.0 --tag stable
-        environment:
-            SD_TEMPLATE_PATH: ./path/to/template.yaml
     remove:
         steps:
             - install: npm install screwdriver-template-main
