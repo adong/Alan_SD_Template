@@ -8,3 +8,6 @@ config:
     steps:
         - install: echo 'install'
         - test: echo 'test'
+compatibilities: 
+    clouds: ['aws']
+    architectures: ['x86']
