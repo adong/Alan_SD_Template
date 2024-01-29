@@ -3,11 +3,39 @@
 #         template: adong/alan-sd-template
 #         image: stable-image
 
+# shared:
+#   image: node:20
+# jobs:
+#   main:
+#       requires: [ ~commit ]
+#       steps:
+#         - hello: |
+#            echo hi
+
 shared:
-  image: node:18
+    image: node:20
 jobs:
-  main:
-      requires: [ ~commit ]
-      steps:
-        - hello: |
-           echo hi
+    main:
+        requires: [~pr, ~commit]
+        steps:
+            - install: npm install screwdriver-template-main
+            - validate: ./node_modules/.bin/template-validate
+        environment:
+            SD_TEMPLATE_PATH: ./path/to/template.yaml
+    publish:
+        requires: [main]
+        steps:
+            - install: npm install screwdriver-template-main
+            - publish: ./node_modules/.bin/template-publish
+            - autotag: ./node_modules/.bin/template-tag --name adong/alan-sd-template --tag latest
+            - tag: ./node_modules/.bin/template-tag --name adong/alan-sd-template --version 1.3.0 --tag stable
+        environment:
+            SD_TEMPLATE_PATH: ./path/to/template.yaml
+    remove:
+        steps:
+            - install: npm install screwdriver-template-main
+            - remove: ./node_modules/.bin/template-remove --name adong/alan-sd-template
+    remove_tag:
+        steps:
+            - install: npm install screwdriver-template-main
+            - remove_tag: ./node_modules/.bin/template-remove-tag --name adong/alan-sd-template --tag stable
