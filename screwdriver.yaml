@@ -26,7 +26,7 @@ jobs:
             - install: npm install screwdriver-template-main
             - publish: ./node_modules/.bin/template-publish
             - autotag: ./node_modules/.bin/template-tag --name adong/alan-sd-template --tag latest
-            - tag: ./node_modules/.bin/template-tag --name adong/alan-sd-template --version 1.3.0 --tag stable
+            - tag: ./node_modules/.bin/template-tag --name adong/alan-sd-template --tag stable
     remove:
         steps:
             - install: npm install screwdriver-template-main
