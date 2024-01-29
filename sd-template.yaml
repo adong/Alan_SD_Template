@@ -2,7 +2,7 @@ namespace: adong
 name: alan-sd-template
 version: '1.0'
 description: template for testing
-maintainer: test@example.com
+maintainer: adong@example.com
 config:
     image: node:20
     steps:
