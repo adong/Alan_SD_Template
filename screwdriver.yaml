@@ -1,5 +1,13 @@
-jobs:
-    main:
-        template: adong/alan-sd-template
-        image: stable-image
+# jobs:
+#     main:
+#         template: adong/alan-sd-template
+#         image: stable-image
 
+shared:
+  image: node:18
+jobs:
+  main:
+      requires: [ ~commit ]
+      steps:
+        - hello: |
+           echo hi
