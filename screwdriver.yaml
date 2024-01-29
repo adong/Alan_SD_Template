@@ -1,0 +1,5 @@
+jobs:
+    main:
+        template: adong/alan-sd-template
+        image: stable-image
+
